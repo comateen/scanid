@@ -37,7 +37,7 @@ public class scanid {
             System.out.println();
 
             //Creation d'une commande qui selectionne les fichiers sur la puce
-            byte[] IDENTITY_FILE_AID = new byte[] {
+            byte[] FICHIERS_CARTE_ID = new byte[] {
                     (byte) 0x3F,// MASTER FILE, Head directory MF "3f00"
                     (byte) 0x00,
                     (byte) 0xDF,// Dedicated File, subdirectory identity DF(ID) "DF01"
@@ -53,7 +53,7 @@ public class scanid {
             byte DATE_NAISSSANCE = (byte) 0x0C;
 
             //Creation d'une commande qui va selectionner le fichier d'identité
-            CommandAPDU selectFileApdu = new CommandAPDU(0x00, 0xA4, 0x08, 0x0C, IDENTITY_FILE_AID);
+            CommandAPDU selectFileApdu = new CommandAPDU(0x00, 0xA4, 0x08, 0x0C, FICHIERS_CARTE_ID);
             reponse = channel.transmit(selectFileApdu);
 
             //Lecture complète du fichier d'dentité
