@@ -51,6 +51,20 @@ public class scanid {
             byte NOM = (byte) 0x07;
             byte NUMERO_NATIONAL = (byte) 0x06;
             byte DATE_NAISSSANCE = (byte) 0x0C;
+            byte NUMERO_CARTE_ID = (byte) 0x01;
+            byte DEBUT_VALIDITE = (byte) 0x03;
+            byte FIN_VALIDITE = (byte) 0x04;
+            byte LOCALITE = (byte) 0x05;
+            byte INITIALE_PRENOM3 = (byte) 0x09;
+            byte NATIONALITE = (byte) 0x0A;
+            byte LIEU_NAISSANCE = (byte) 0x0B;
+            byte SEXE = (byte) 0x0D;
+            //byte test = (byte) 0x0E;
+            //byte test = (byte) 0x0F;
+            //byte test = (byte) 0x02;
+            //byte test = (byte) 0x11;
+            //byte test = (byte) 0x10;
+            byte test = (byte) 0xB0;
 
             //Creation d'une commande qui va selectionner le fichier d'identité
             CommandAPDU selectFileApdu = new CommandAPDU(0x00, 0xA4, 0x08, 0x0C, FICHIERS_CARTE_ID);
@@ -91,8 +105,45 @@ public class scanid {
 
                 if (DATE_NAISSSANCE == tag) {
                     String date_naissance = new String(Arrays.copyOfRange(file, idx, idx + length));
-                    System.out.println("date de naissance: " + date_naissance);
+                    System.out.println("Date de naissance: " + date_naissance);
                 }
+                if (NUMERO_CARTE_ID == tag) {
+                    String numero_carte_id = new String(Arrays.copyOfRange(file, idx, idx + length));
+                    System.out.println("Numéro de la carte d'identité: " + numero_carte_id);
+                }
+                if (DEBUT_VALIDITE == tag) {
+                    String debut_validite = new String(Arrays.copyOfRange(file, idx, idx + length));
+                    System.out.println("Début de la validité: " + debut_validite);
+                }
+                if (FIN_VALIDITE == tag) {
+                    String fin_validite = new String(Arrays.copyOfRange(file, idx, idx + length));
+                    System.out.println("Fin de la validité: " + fin_validite);
+                }
+                if (LOCALITE == tag) {
+                    String localite = new String(Arrays.copyOfRange(file, idx, idx + length));
+                    System.out.println("Localite: " + localite);
+                }
+                if (INITIALE_PRENOM3 == tag) {
+                    String initiale_prenom3 = new String(Arrays.copyOfRange(file, idx, idx + length));
+                    System.out.println("Initiale du 3ième prénom: " + initiale_prenom3);
+                }
+                if (NATIONALITE == tag) {
+                    String nationalite = new String(Arrays.copyOfRange(file, idx, idx + length));
+                    System.out.println("Nationalité: " + nationalite);
+                }
+                if (LIEU_NAISSANCE == tag) {
+                    String lieu_naissance = new String(Arrays.copyOfRange(file, idx, idx + length));
+                    System.out.println("Lieu de naissance: " + lieu_naissance);
+                }
+                if (SEXE == tag) {
+                    String sexe = new String(Arrays.copyOfRange(file, idx, idx + length));
+                    System.out.println("Sexe: " + sexe);
+                }
+                if (test == tag) {
+                    String t = new String(Arrays.copyOfRange(file, idx, idx + length));
+                    System.out.println("test: " + t);
+                }
+
                 idx += length;
             }
 
