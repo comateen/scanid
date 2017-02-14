@@ -8,11 +8,6 @@ import be.belgium.eid.*;
 
 public class scanidwithlib {
     public static void main(String[] args) {
-        try {
-
-        } catch(Exception e) {
-            System.out.println("Y a un probleme mon chou " + e.toString());
-        }
         BEID_Long beLong = new BEID_Long();
         BEID_Status CardStatus;
         BEID_ID_Data idData = new BEID_ID_Data();
@@ -23,15 +18,14 @@ public class scanidwithlib {
 
         CardStatus = eidlib.BEID_Init(null,0,0,beLong);
         if(CardStatus.getGeneral() == 0)
-            System.out.println("You are been connected.");
+            System.out.println("La carte est connectée");
         else
-            System.out.println("Connection fail !");
+            System.out.println("Connection échouée !");
 
-        System.out.println("<Connected> Reading the card ...");
+        System.out.println("Lecture de la carte ...");
         eidlib.BEID_GetID(idData,CertCheck);
 
-        // User
-
+        // Données d'identité
         System.out.println(idData.getName());
         System.out.println(idData.getFirstName1());
         System.out.println(idData.getBirthLocation());
@@ -47,17 +41,16 @@ public class scanidwithlib {
         System.out.println(userAddress.getMunicipality());
         System.out.println(userAddress.getCountry());
 
-        CardStatus = eidlib.BEID_GetPicture(userPicture, CertCheck);
+        /*CardStatus = eidlib.BEID_GetPicture(userPicture, CertCheck);
         if(CardStatus.getGeneral() != 0)
-            System.out.println("you are been fucked");
+            System.out.println("YOU LOSE!!!");
 
-        /*ImageIcon ic = new ImageIcon(userPicture.getData());
+        ImageIcon ic = new ImageIcon(userPicture.getData());
         ic.getImage();//S'assurer que l'image est complètement chargée
 
         pnUser.setPicture(ic);*/
 
-        // Card
-
+        // Données de la cartes
         System.out.println(idData.getCardNumber());
         System.out.println(idData.getChipNumber());
         System.out.println(idData.getValidityDateBegin());
