@@ -6,6 +6,7 @@
 import java.util.Arrays;
 import java.util.List;
 import javax.smartcardio.*;
+import be.belgium.eid.*;
 
 public class scanid {
     public static void main(String[] args) {
@@ -59,12 +60,10 @@ public class scanid {
             byte NATIONALITE = (byte) 0x0A;
             byte LIEU_NAISSANCE = (byte) 0x0B;
             byte SEXE = (byte) 0x0D;
-            //byte test = (byte) 0x0E;
             //byte test = (byte) 0x0F;
             //byte test = (byte) 0x02;
             //byte test = (byte) 0x11;
             //byte test = (byte) 0x10;
-            byte test = (byte) 0xB0;
 
             //Creation d'une commande qui va selectionner le fichier d'identité
             CommandAPDU selectFileApdu = new CommandAPDU(0x00, 0xA4, 0x08, 0x0C, FICHIERS_CARTE_ID);
@@ -139,10 +138,8 @@ public class scanid {
                     String sexe = new String(Arrays.copyOfRange(file, idx, idx + length));
                     System.out.println("Sexe: " + sexe);
                 }
-                if (test == tag) {
-                    String t = new String(Arrays.copyOfRange(file, idx, idx + length));
-                    System.out.println("test: " + t);
-                }
+                //String t = new String(Arrays.copyOfRange(file, idx, idx + length));
+                //System.out.println("test: " + t);
 
                 idx += length;
             }
